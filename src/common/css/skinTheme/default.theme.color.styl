@@ -1,0 +1,1239 @@
+// @require "./../comm"
+body
+  background $body-bg
+  overflow-x hidden;
+//header+nav
+header
+  background linear-gradient(to right, $nav-dark-bg, $nav-linght-bg)
+  .header-top
+    background linear-gradient(to right, $nav-dark-bg, $nav-linght-bg)
+    //用户头像
+    .user-box
+      .user-pop
+        .iconFont.icon-checkbox
+          color $main-color
+        .group-lists li:hover
+          a
+            color $main-color
+        .group-title i.iconFont:hover
+           color $main-color
+    .avatar-com .avatar-content .user-pop .user-content ul.group-lists li:hover{
+      a {
+            color $main-color
+      }
+    }
+    .avatar-com .avatar-content .user-pop .user-content .group-title {
+      i.iconFont:hover {
+        color $main-color
+      }
+    }
+    //九宫格模块
+    .action-box, .sudoku-com
+      .action-module
+        .img-box
+          i.iconFont
+            color $action-box-iconCol
+        .name-txt
+          color $body-txt
+        &:hover
+          background $action-module-hoverBg
+          .name-txt
+            color $main-color
+      .botm-liner
+        background $set-box-liner-bg
+  //nav(menu)
+  .navigation
+    background linear-gradient(to right, $nav-dark-bg, $nav-linght-bg)
+    .header-top-bottom
+      background $header-top-bottom
+    .li-hover.active,.li-hover:hover
+      background-color $nav-hover-color
+      a
+        color $nav-a-col
+    .nav-mask
+      background $nav-mask
+    //more-nav
+    li.li-more
+      ul.more-menubox
+        background $nav-more-bg
+        .top-search
+          .lin-span
+            background $fff
+        .morbox
+          li.active
+            background-color $nav-more-hover-color
+            &:hover
+              background-color $nav-more-hover-color
+        &:hover
+          li:hover
+            background-color $nav-more-hover-color
+            span
+              color $nav-a-col
+            .m-close
+              .iconFont
+                color  $nav-more-close-icon
+              &:hover
+                .iconFont
+                  color  $nav-a-col
+    li.li-more.m-active
+      a.a-more
+        background $nav-more-bg
+    li.li-more.active
+      background-color $nav-hover-color
+    li.li-more:hover
+      background-color $nav-hover-color
+    //拖拽的线
+    .menu-drag
+      background rgba(255, 255, 255, .6)
+    .more-menu-drag
+      background rgba(0, 0, 0, .2)
+//内容部分
+.main-box
+  .cards-top
+    .top-title
+      color $btnHover
+      &:hover
+        color $btnBlueHover
+      .drill-card-name
+        color $btnHover
+        &:hover
+          color $btnBlueHover
+  .content-top
+    .setting-box
+      background $fff
+      li.colle-con
+        color $body-txt
+        white-space nowrap
+        .iconFont
+          color $set-box-icon-col
+          font-size: 16px;
+        &:hover,
+        &.active
+          background-color $action-module-hoverBg
+          white-space nowrap
+      .colle-con.new-colle
+        background $set-box-liner-bg
+  .edt-collect
+    background $edt-bg
+    // border-bottom 1px solid $edt-bor-bottom-col
+    &:hover
+      background $edt-bg-hover
+  .edt-collect.collect-default
+    background $body-bg
+    .edt-tit
+      .operate
+        .iconFont:hover
+          color $black
+    &:hover
+      background $body-bg
+  card-list:nth-of-type(1)
+    .edt-collect
+      border-top 1px solid $edt-bor-bottom-col
+  //下钻
+  .drillContent
+    .drill-list-con
+      .btnTxt.hover-btnTxt
+        color $main-color
+        &:hover
+          color $main-hover
+      .btn-box
+        .btnTxt
+          color  $bar-col
+      .drill-list-con-line
+        .add-child-drill
+          color $bar-col
+          &:hover
+            color $main-hover
+  //操作下拉
+  .more-box
+    background $fff
+    border 1px solid $set-box-border-col
+    // x-box-shadow(0 1px 5px 1px rgba(0,0,0,0.13))
+    li
+      color $body-txt
+      .icon-checkbox
+        color $set-box-icon-col
+    li,.show-type
+      &:hover,
+      &.active
+        background-color $action-module-hoverBg
+      &.disabled
+         color $un-click
+    .m-con
+      background $set-box-liner-bg
+  //addCard -维度，指标
+  .add-home-cards, .new-add-shared-cards
+    //add card left
+    .left-drag
+      .dataSetBtn
+        .detail-table-name
+          color $main-color
+          &:hover
+            color $main-hover
+      ul.cards-list
+        li
+          background $value-drag-bg
+          border 1px solid $value-drag-bor
+          color $value-drag-txt-col
+          .bor-drag
+            background $bor-drag
+          &:hover
+            background $value-drag-hover-bg
+            border-color $value-drag-hover-bor
+          &.blues
+            background $value-drag-bg
+            border 1px solid $value-drag-bor
+            color $value-drag-txt-col
+            .bor-drag
+              background $bor-drag
+            .vbor-drag
+              background $bor-drag
+            &:hover
+              background $value-drag-hover-bg
+              border-color $value-drag-hover-bor
+          &.greens
+            background $values-box-bg
+            border 1px solid $values-box-bor
+            color $values-box-txt-col
+            .bor-drag
+              background $val-bor-drag
+            .vbor-drag
+              background $val-bor-drag
+            &:hover
+              background $values-box-hover-bg
+              border-color $values-box-hover-bor
+              color $values-box-txt-hover-col
+      .values-box
+        .values-title
+          .add
+            .iconFont:hover
+              color $main-color
+        ul.values-list
+          li
+            background $values-box-bg
+            border 1px solid $values-box-bor
+            color $values-box-txt-col
+            .vbor-drag
+              background $val-bor-drag
+            &:hover
+              background $values-box-hover-bg
+              border-color $values-box-hover-bor
+              color $values-box-txt-hover-col
+            &.blues
+              background $value-drag-bg
+              border 1px solid $value-drag-bor
+              color $value-drag-txt-col
+              .bor-drag
+                background $bor-drag
+              .vbor-drag
+                background $bor-drag
+              &:hover
+                background $value-drag-hover-bg
+                border-color $value-drag-hover-bor
+            &.greens
+              background $values-box-bg
+              border 1px solid $values-box-bor
+              color $values-box-txt-col
+              .bor-drag
+                background $val-bor-drag
+              .vbor-drag
+                background $val-bor-drag
+              &:hover
+                background $values-box-hover-bg
+                border-color $values-box-hover-bor
+                color $values-box-txt-hover-col
+    //add card right
+    .right-tab
+      .tab-box
+        .img-box.active
+          .img-title
+            border-color $main-color
+      .color-setting
+        .cust-con-box
+          .reset
+            color $main-color
+            &:hover
+              color $main-hover
+  //card 详情
+    //信息information
+  .dataScope-hitpop
+    .icon-Activityinformation
+      &:hover
+        color $main-hover
+  .actionMessageBox
+    .titles:hover,.active-col:hover
+      color $main-hover
+    .active-col
+      color  $bar-col
+  .chart-icon
+    .icon-datadisplay:hover,.icon-show-col:hover, .icon-eye_show:hover
+      color $main-hover
+    .icon-show-col
+      color  $bar-col
+    //提交
+  .discuss-tab
+    .tab-strategic span:hover
+      color $main-hover
+  .discuss-content-box
+    .con-box
+      .comment-col
+        color  $bar-col
+      .dis-btn
+        color $main-color
+  .make-comments
+    &.active
+      .comment-btn
+        background  $bar-col
+      .edt-div
+        border-color $main-color
+    .edt-div:focus
+      border-color $bar-col
+    .edt-div:focus + .comment-btn
+      background  $bar-col
+  
+  .customer-add
+    .history-icon-page
+      .history-icon-page-item
+        &.active
+          border 1px solid rgba(84,179,241,.15)
+          background-color rgba(84,179,241,.04)
+  //add-活动
+  .address-list
+    .address-del
+      color  $bar-col
+  .address-add
+    color  $bar-col
+    &:hover
+      color $main-hover
+  .wrap-btn-box
+    .ebtn
+      color  $bar-col
+      &:hover
+        color $main-hover
+  #camp-sider-fix
+    .symbol
+      color $symbol-color
+      background $symbol-bg
+      border-bottom 1px solid $symbol-bor
+      &:last-child
+        background $symbol-bor
+        &:hover
+          color $body-txt
+          background $symbol-bor
+      &:hover,
+      &.active
+        color $main-color
+        background $symbol-bor-active
+  
+  //活动详情
+  .list-preview, .measurelib-box .campaignGroupDetail
+    .bind-btn
+      color $bar-col
+      &:hover
+        color $main-hover
+    .unbind
+      color  $bar-col
+
+  //dataSets
+  .addBlend-box
+    .link-list-box
+      .link-way
+        i.iconFont:hover
+          color $bar-col!important
+    .add-active-content.importDataContent  
+      .hintpop.relative
+        i.iconFont.icon-question:hover   
+          color $main-hover
+//投屏
+.presentation
+  .pres-header
+    .pres-logo
+      background $presentation-bg
+  .pres-footer
+    .card-index
+      &.active
+        img
+          border 3px solid $bar-col
+
+.page-template
+  .preview-box
+    .click-preview
+      color $bar-col
+      &:hover
+        color $main-hover
+
+
+//table部分
+.ad-table, .datasets-tables, #campaignGroupMainContent
+  .btn-box
+    .btnTxt
+      color $bar-col
+      &:hover
+        color $btnBlueHover
+      &.disabled
+        color $un-click
+        &:hover
+          color $un-click
+    .adPop .adTitle .bold, .iconFont.icon-close
+      color $body-txt
+    .adPop .adTitle .bold:hover
+      color $body-txt
+
+
+  thead tr,.filterth
+    .icon-hint:hover
+      color $main-color!important
+//
+
+.main-btn-color
+  color $bar-col
+//按钮组盒子
+.opt-btn-box
+  .btnTxt
+    color $bar-col
+    &.disabled
+      color $un-click
+      &:hover
+        color $un-click
+    &:hover
+      color $btnBlueHover
+
+.tabBox
+  .tabBtn
+    .animation-box
+      background $main-color
+.drops
+  span
+    color $bar-col
+  &:hover
+    span
+      color $btnBlueHover
+.bind-operation, .ebtn
+  color $bar-col
+  &:hover
+    color $btnBlueHover
+//bar
+i.icon-radio,
+i.icon-checkbox
+  color $bar-col
+  &:hover
+    color $bar-col
+i.checkNoend:after
+  background $bar-col
+i.icon-radio:before
+  background $bar-col
+.btnTxt
+  color $bar-col
+  &:hover
+    color $main-color
+.main-color
+  color $main-color
+.btns,.btn-success
+  background $bar-col
+  &:hover
+    background $main-hover
+  &.gray
+    &:hover
+      background none
+      color $bar-col
+input:hover
+  border-color $bar-col
+input:focus
+  border-color $bar-col!important
+.border-bottom-color
+  border-bottom-color: $bar-col !important
+.bg-color
+  background-color: $bar-col !important
+//搜索框
+.top-search
+  .lin-span
+    background $search-line-bg
+  .po-search:hover
+    color $main-color
+  .po-close:hover
+    color $error
+
+
+.top-search.code-mirror-box-seach
+  .lin-span-focus
+    background #e9e9e9
+    height 1px
+    //&:focus
+    //  background $search-line-bg
+  input:focus + .lin-span-focus
+    width 100%
+    background $search-line-bg
+
+
+
+
+//lodaing
+.windows8 .wBall .wInnerBall
+  background $load-wInnerBall-bg
+//开关
+.open-cirle
+  .cirle-open
+    background $bar-col
+.grid-line
+  .bas
+    background $bar-col!important
+//日期icon
+.datepicker-box
+  .icon-data
+    color $datepicker-icon-col
+.daterangepicker td.active, .daterangepicker td.active:hover
+  background $bar-col !important
+.daterangepicker td.in-range
+  background rgba($bar-col,.3)
+  &:hover
+    background rgba($bar-col,.4)
+.daterangepicker .cancelBtn
+  &:hover
+    color $bar-col
+//下拉框
+.selects
+  .se-item
+    .once
+      color $body-txt
+      &:hover
+        background-color $action-module-hoverBg
+//上传图片
+.upload-file
+  &:hover
+    background $upload-bg
+    border 1px solid $upload-bor
+    .uploading
+      .iconFont,.up-span
+        color $btnHover
+//分页
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover
+  color: $main-color
+  border-color: $main-color
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover
+  color: $main-color
+  border-color: $main-color
+.pagination > li:first-child,.pagination > li:last-child
+  a:hover
+    &:before
+      border-right-color $main-color
+
+//拖拽
+.dmp-priority-sort
+  .sort-item
+    span
+      background $fff
+      color $body-txt
+      border 1px dotted $bar-col
+//Tag
+.active-types
+  .type-con
+    .type-con-bottom
+      span
+        color $bar-col
+        &:hover
+          color $main-hover
+    .combination-con-volume
+      .set-volume
+        span
+          color $main-color
+//弹窗
+
+
+
+.ant-input:hover,
+.ant-calendar-picker:hover .ant-calendar-picker-input:not(.ant-input-disabled)
+  border-color $main-hover !important;
+.ant-input:focus,
+.ant-calendar-picker:focus .ant-calendar-picker-input:not(.ant-input-disabled)
+  border-color $bar-col !important;
+  box-shadow: none;
+.ant-radio:hover:after, .ant-radio-wrapper:hover .ant-radio:after
+  visibility:hidden!important;
+.ant-radio-inner:after
+  background-color: $bar-col !important;;
+.ant-radio-checked .ant-radio-inner
+  border-color: $bar-col !important;;
+.ant-radio-disabled .ant-radio-inner:after
+  background-color: rgba(0, 0, 0, 0.25)!important;
+.ant-radio-disabled.ant-radio-checked .ant-radio-inner
+  border-color: rgba(0, 0, 0, 0.25) !important;; 
+
+.ant-radio-wrapper:hover .ant-radio .ant-radio-inner,
+.ant-radio:hover .ant-radio-inner,
+.ant-radio-focused .ant-radio-inner,
+.ant-select-selection:hover
+.ant-upload.ant-upload-select-picture-card:hover
+  border-color: $bar-col !important;
+.ant-select-selection:active
+  border-color: $bar-col !important;
+  box-shadow: none !important;
+.ant-select-dropdown.ant-select-dropdown--multiple .ant-select-dropdown-menu-item
+  &:hover,
+  &.ant-select-dropdown-menu-item-selected
+    .ant-select-selected-icon
+      color: $bar-col !important;
+.ant-switch-checked
+  background-color: $bar-col !important;;
+.ant-table-row .operation .btnTxt
+  color $bar-col !important;
+  &:hover
+    color $btnBlueHover !important;
+  &.disabled
+    color $un-click !important;
+    &:hover
+      color $un-click !important;
+
+.ant-checkbox-checked .ant-checkbox-inner,
+a.new-material,
+.btn-group a,
+.del-td a,
+.detail-edit
+  color $bar-col !important;
+.ant-checkbox-checked:after
+  border: none
+.ant-checkbox-indeterminate .ant-checkbox-inner:after
+  background-color $bar-col !important;
+.ant-tree-checkbox-checked .ant-tree-checkbox-inner
+  background-color #fff!important;
+  border-color: #ccc!important;
+.ant-tree-checkbox-checked .ant-tree-checkbox-inner:after
+  border-color: $bar-col !important;
+
+.ant-tree-checkbox-checked:after
+  animation: none;
+  border-color: #ccc !important;
+.ant-checkbox:hover:after, .ant-checkbox-wrapper:hover .ant-checkbox:after
+  visibility:hidden!important;
+// .ant-tree-checkbox:hover .ant-tree-checkbox-inner
+//   border-color: #ccc;
+
+.ant-pagination.ant-table-pagination > .ant-pagination-options .ant-select-selection:hover,
+.ant-pagination.ant-table-pagination > .ant-pagination-options .ant-select-selection:active,
+.ant-pagination.ant-table-pagination > .ant-pagination-options .ant-select-selection:focus,
+.ant-pagination.ant-table-pagination > .ant-pagination-item-active,
+.ant-pagination.ant-table-pagination > .ant-pagination-item > a,
+.ant-pagination.ant-table-pagination > .ant-pagination-item:active,
+.ant-pagination.ant-table-pagination > .ant-pagination-item:focus,
+.ant-pagination.ant-table-pagination > .ant-pagination-item:hover,
+.ant-pagination.ant-table-pagination > .ant-pagination-next:active,
+.ant-pagination-item-active,
+.ant-pagination-item:hover,
+.ant-pagination-next:not(.ant-pagination-disabled):hover .ant-pagination-item-link
+.ant-pagination-next:focus .ant-pagination-item-link,
+.ant-pagination.ant-table-pagination > .ant-pagination-prev:active,
+.ant-pagination-prev:not(.ant-pagination-disabled):hover .ant-pagination-item-link
+.ant-pagination-prev:focus .ant-pagination-item-link
+  color: $bar-col !important;
+  border-color: $bar-col !important;
+  outline: 0;
+  box-shadow: none;
+  border-radius: 0;
+.ant-pagination.ant-table-pagination > .ant-pagination-options .ant-select-selection,
+.ant-pagination-prev .ant-pagination-item-link,
+.ant-pagination-next .ant-pagination-item-link,
+.ant-pagination.ant-table-pagination > .ant-pagination-item
+  border-radius: 0;
+.ant-pagination-item-active a,
+.ant-pagination-item:hover a,
+i.iconFont.icon-doubt.txt-tips:hover
+  color: $bar-col !important;
+.addnewer-tabs-wrapper .tabs-tabbar .tabbar-item.tabbar-active:after
+  background  $bar-col
+#app3 .measurelib-box .campaignGroupDetail
+  .bind-btn
+    color $bar-col !important;
+    &:hover
+      color $main-hover !important;
+  .unbind
+    color  $bar-col !important;
+.common-tooltip-container-name:hover
+  color: $main-hover !important;
+
+.iconFont.icon-close:hover
+  color $error !important;
+
+.alert-fotter-cancel-text:hover, .alert-fotter-ok-text:hover
+  color $main-hover !important;
+
+#app3 .top-title .top-title-text
+  color $btnHover !important
+  &:hover
+    color $btnBlueHover !important
+
+#app3 .box-btns
+  .b-btnTxt.ebtn
+    color  $bar-col
+    &:hover
+      color $main-hover
+#app3 .layout-container .active 
+  border-bottom-color $bar-col !important;
+
+#icon-yun-download-loading
+  width: 386px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index 100000;
+  background: #fff;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  box-shadow: 0 1px 4px 0 rgba(1,1,0,0.44);
+  p {
+    font-size: 14px;
+    margin-top: 10px;
+    font: 12px/1.5 'Open Sans', Arial, He;
+  }
+  i {
+    color: #1296db;
+    display: inline-block;
+    font-size: 66px;
+    height: 86px;
+  }
+
+.alert-footer-cancel-text, .alert-footer-ok-text
+  color: #55595b;
+  &:hover
+    color $main-hover
+
+.extra-footer
+  .extra-footer-item
+    color $bar-col !important;
+    &:hover
+      color $main-hover
+.ant-calendar-selected-date .ant-calendar-date,
+.ant-calendar-selected-start-date .ant-calendar-date,
+.ant-calendar-selected-end-date .ant-calendar-date,
+.ant-calendar-month-panel-selected-cell .ant-calendar-month-panel-month,
+.ant-calendar-year-panel-selected-cell .ant-calendar-year-panel-year
+  background $bar-col!important;
+  border-radius 0!important;
+  &:hover
+    background $main-hover
+.ant-calendar-date:active
+  background $bar-col!important
+.ant-calendar-picker {
+  a{
+    &:hover {
+      color:  $main-hover!important
+    }
+  }
+}
+.ant-calendar .ant-calendar-today .ant-calendar-date{
+  border-color: transparent;
+  // background: #fff;
+  color:  $bar-col;
+}
+.ant-calendar .ant-calendar-selected-date
+  .ant-calendar-date
+    color: #fff;
+    
+.ant-calendar-range .ant-calendar-today.ant-calendar-selected-day{
+ .ant-calendar-date{
+    color: #fff;
+  }
+}
+
+.td-child
+  .operation
+    a
+      color $main-color
+      &:hover
+        color $main-hover
+.ant-modal-footer
+  .btnTxt
+    color $main-color
+    &:hover
+      color $main-hover
+.ant-select-dropdown-menu li,ant-select-selection-selected-value
+  font-size 12px
+.ant-select-dropdown-menu-item-active
+  background-color: #f2f2f2 !important;
+.ant-modal-title
+  font-weight 400!important
+.ant-table-thead tr th 
+  border-bottom 1px solid #f2f2f2!important
+.ant-table-tbody tr td
+  border-bottom 1px solid #f2f2f2!important
+.c-status
+  color #999
+
+.addSubContent .icon-the_calendar{
+  font-size  16px
+  color #999999
+}
+
+.ant-select-dropdown .ant-select-dropdown-menu-item-selected
+  font-weight normal
+
+.drawerChecked
+  background $main-color
+  i
+    color #fff!important
+  color #fff
+  &:hover
+    background $main-color!important
+.dsc-main-color {
+   color $main-color;
+    &:hover{
+      color $main-hover;
+    }
+}
+.card-detail-container .newdetail-comment-wrapper .comment-input-wrapper .comment-submit, .drill-detail-container .newdetail-comment-wrapper .comment-input-wrapper .comment-submit {
+  background: $bar-col;
+}
+
+.cursor-custom {
+  cursor: url(https://su.addnewer.com/js/pointer/pointer.png) 4 2, auto!important;
+}
+
+.homepage .page-menu-name .focus{
+  border-color $main-hover!important
+}
+
+.Template
+  .ant-select-selection-selected-value
+    max-width 90%!important
+  .ant-modal-content
+    box-shadow none
+    .ant-modal-header
+      padding: 12px 0;
+    .ant-modal-body
+      .ant-form-item-label 
+        label
+          color rgba(0, 0, 0, 0.65)
+
+
+
+.ant-select-tree-switcher
+  float left
+  
+.TemplateTree 
+  .ant-select-tree-treenode-switcher-close:hover
+    background-color #F5F5F5!important
+
+.TemplateTree 
+  .ant-select-tree-node-content-wrapper:hover
+    background none!important
+
+.TemplateTree 
+  .ant-select-tree-treenode-selected
+    background-color #F5F5F5!important
+    .ant-select-tree-node-content-wrapper
+      background none!important
+
+
+.TemplateTree 
+  .ant-select-tree-node-content-wrapper
+    width 80%!important
+    display inline-block
+    white-space nowrap
+    overflow hidden
+    text-overflow ellipsis
+
+.TemplateTree 
+  .ant-select-tree
+    padding 0 0!important
+    .ant-select-tree-treenode-disabled
+      .ant-select-tree-node-content-wrapper
+        span
+          color rgba(0, 0, 0, 0.65)!important
+
+.select-tree
+  .ant-tree-checkbox
+    .ant-tree-checkbox-inner
+      border-radius 0!important
+  .ant-tree-checkbox:hover
+    .ant-tree-checkbox-inner
+      border-color $main-hover!important
+    &.ant-tree-checkbox-checked:after
+      border 0!important
+
+.highlight-bg, .slider-track::before
+  background-color: $main-color;
+.loreal-brand-tree-select
+  .ant-select-tree-checkbox-checked .ant-select-tree-checkbox-inner {
+    background-color: $main-color;
+    border-color: $main-color;
+  }
+
+
+.dsc-main-boder:hover
+  border-color $main-hover!important
+.dsc-border-color
+  border-color $main-hover!important
+.rc-table
+  .drop-over-downward
+    // background #f6f6f6
+    td
+      border-bottom 1px solid $main-hover
+      border-top 0
+  .drop-over-upward
+    td
+      padding 4px 8px 4px 10px!important
+      border-top 1px solid $main-hover
+
+.styleType
+  .picker:hover
+    border-color $main-hover
+
+  
+.pageStyle
+  .sliderLine
+    .ant-slider-track
+      background-color $main-color!important
+  .CardColorList
+    .CardColorListDefault:hover, .list .listColor:hover
+      border-color $main-color!important
+  
+  #tableLine:hover, #indicatorCard:hover
+    border-color $main-color!important
+
+.layout
+  &.layoutThemeB
+    .drawer
+      .drawerAreaLi:hover, .CollectsChild:hover, .CollectsTitle:hover, .drawerFolderLi:hover, .drawerPage:hover
+        background-color $main-color!important
+    .right-header
+      .menu-text:hover
+        border-bottom-color $main-color!important
+.ant-table-tbody
+  .drop-over-upward
+    td
+      border-top 1px solid $main-hover!important
+      border-bottom 0
+  .drop-over-downward
+    td
+      border-top 0
+      border-bottom 1px solid $main-hover!important
+.inputBox 
+  .Color
+    &:hover
+      border 1px solid $main-hover!important
+//编辑页
+.cardManage
+  .rightTab
+    .tab-content
+      .active
+        .img-title
+          border-color $main-hover!important
+//card编辑页设置
+.setModel
+  width 183px
+  heght auto
+  padding-left: 0px;
+  .ant-popover-arrow
+    display none
+  .ant-popover-title
+    width 167px
+    min-width: 167px;
+    height 42px
+    line-height 42px
+    margin 0 8px
+    padding 0
+    font-size 14px
+    .icon-drop-down
+      display inline-block
+      transform rotate(90deg)
+      font-size 12px
+      margin-right 10px
+  .ant-popover-inner-content
+    padding 10px 0
+    overflow hidden
+    .sort, .set, .calculation
+      padding 0 10px
+      p
+        height 30px
+        line-height 30px
+        margin-bottom 0
+        padding-left 10px
+        .icon-drop-down
+          font-size 12px
+          transform rotate(-90deg)
+          margin-right 4px
+        &:hover
+          background #f4f4f4
+        &.sort_li
+          padding-left 4px
+          .icon-checkbox, .icon-uncheckbox
+            margin-right 4px
+            background none
+            border 0px
+      .calculation_li
+        padding-left 10px
+        margin-bottom 5px
+        &.none
+          color #ccc
+        i
+          margin-right 8px
+      .change-box
+        margin-bottom 5px
+        &.border-boms 
+          border-bottom 1px solid #e0e0e0
+          padding-bottom 12px
+        .title 
+          display inline-block
+          margin-left 8px
+          font-size 12px
+      .decimals
+        margin-top 12px
+        margin-bottom 12px
+        .title 
+          display inline-block
+          margin 0 8px
+          font-size 12px
+        .numbers-input-box
+          display inline-block
+          .numbers-input 
+            padding-left 4px
+            padding-right 15px
+            width 68px
+            height 30px
+            line-height 30px
+            font-size 12px
+            box-sizing border-box
+            &:hover 
+              border-color $main-hover!important
+          .iconFont 
+            position absolute
+            font-size 12px
+            right 3px
+            color #9a9a9a
+            &.icon-upward  
+              top 0px
+            &.icon-downward 
+              bottom 0px
+      .thousands
+        .title 
+          display inline-block
+          margin-left 8px
+          font-size 12px
+      .alignment 
+        margin-top 20px
+        margin-left 21px
+        .icon-box
+          display inline-block
+          width 40px
+          height 26px
+          box-sizing border-box
+          border 1px solid #eaeaea
+          border-right 0
+          text-align center
+          line-height 26px
+          border-right 1px solid #eaeaea
+          &:hover, &.active
+            background #f5f5f5
+          .iconFont
+            font-size 20px
+            color #898989
+      .checked-list
+        margin-top: 6px;
+        margin-bottom: 10px;
+        border: none;
+        width: 100%;
+        .img-box
+          display: inline-block;
+          margin-right: 10px;
+          height: 24px;
+          width: 40px;
+          text-align: center;
+          border-radius: 2px;
+          .img-title
+            height: 100%;
+            border: 1px solid #e0e0e0;
+            border-radius: 2px;
+            svg 
+              font-size: 24px;
+          &.active, &:hover
+            .img-title
+              border-color: $main-hover
+
+.setFilter
+  width 538px
+  heght auto
+  padding-left: 0px;
+  .ant-popover-arrow
+    display none
+  .ant-popover-title
+    width 498px
+    height 42px
+    line-height 42px
+    margin 0 20px
+    padding 0
+    font-size 14px
+    .dimensionsFilterTop, .measuresFilterTop
+      .name
+        display inline-block
+        max-width 80px
+      .top-search
+        margin-top 0px
+        margin-left 5px
+        vertical-align initial
+        &.focus
+          margin-top 0
+          width 100px
+          margin-bottom: 8px;
+        .search-input
+          float left
+        .icon-close
+          line-height 28px
+      .right
+        font-size 12px
+        margin-right 6px
+        cursor pointer
+        i, button
+          margin-right 6px
+          vertical-align text-top
+        &.disabled
+          color #ccc
+  .ant-popover-inner-content
+    padding 0
+    overflow hidden
+    .dimensionsFilter, .measuresFilter
+      padding 0 20px
+      width 498px
+      .footer
+        border-top 1px solid #e8e8e8
+        height 60px
+        line-height 60px
+      &.dimensionsFilter
+        .details
+          width 100%
+          height 265px
+          overflow hidden
+          overflow-y auto
+          .commonList
+            height auto
+            li
+              width 100%
+              height 34px
+              line-height 34px
+              border-bottom-color #fff    
+              padding 0 10px
+              cursor pointer
+              i   
+                margin-right 10px
+                margin-top -25px
+              &:hover 
+                background #f4f4f4
+                .btnTxt
+                  display inline-block
+              .title
+                display inline-block
+                width 300px
+                overflow hidden
+                text-overflow ellipsis
+                white-space  nowrap
+              .btnTxt
+                margin-left 5px
+                display none
+                font-size 12px
+                margin-bottom 25px
+                vertical-align: middle;
+              .show
+                display inline-block!important
+                
+
+      &.measuresFilter
+        .details
+          height 153px
+          margin-top 20px
+          .ant-select
+            margin-right 8px
+          input 
+            width 120px
+            height 30px
+            line-height 30px
+            margin-left 4px
+            padding-left 10px
+
+            
+.setTimeModel
+  width 400px
+  heght auto
+  padding-left: 0px;
+  .ant-popover-arrow
+    display none
+  .ant-popover-title
+    width 360px
+    height 47px
+    line-height 47px
+    margin 0 20px
+    padding 0
+    font-size 14px
+    .right
+      font-size 12px
+    .dateFilterTop
+      .top-search
+        margin-top 12px
+        vertical-align middle
+        &.focus
+          margin-top 0
+          width 120px
+        .search-input
+          float left
+        .icon-close
+          line-height 28px
+      .right
+        font-size 12px
+        margin-right 6px
+        cursor pointer
+        i, button
+          margin-right 6px
+          vertical-align text-top
+        &.disabled
+          color #ccc
+  .ant-popover-inner-content
+    padding 0
+    overflow hidden
+    .dateFilter
+      padding 0 20px
+      width 360px
+      .details
+        height 300px
+        overflow-y auto  
+        overflow-x hidden  
+        .commonList
+          height auto
+          li
+            width 100%
+            height 34px
+            line-height 34px
+            border-bottom-color #fff    
+            padding 0 10px
+            cursor pointer
+            font-size 12px
+            .iconFont 
+              margin-right 5px
+          .disabled
+            color #ccc
+        .ant-calendar-picker
+          .ant-calendar-input-wrap
+            height auto
+          .ant-calendar
+            width 200px!important
+          .th
+            padding-top 0
+          .ant-calendar-cell
+            padding-top 0
+            height auto
+        .date-between
+          line-height: 40px;
+          div
+            display inline-block
+          .min-date
+            padding-right: 20px;
+      .footer
+        border-top 1px solid #e8e8e8
+        height 60px
+        line-height 60px
+
+

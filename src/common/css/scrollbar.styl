@@ -1,0 +1,51 @@
+@require './global'
+@require './comm'
+
+//滚动条样式
+/* 设置滚动条的样式 */
+.scrollbar-visible::-webkit-scrollbar
+  width 0
+  height 10px
+.mess-scrollbar-visible::-webkit-scrollbar
+  width 6px
+  height 10px
+/* 滚动槽 */
+.scrollbar-visible::-webkit-scrollbar-track
+  background rgba(255,255,255,0)
+  x-border-radius(3px)
+/* 滚动条滑块 */
+.scrollbar-visible::-webkit-scrollbar-thumb
+  // visibility hidden
+  background rgba(0,0,0,0)
+  x-border-radius(3px)
+.scrollbar-box:hover
+  .scrollbar-visible::-webkit-scrollbar
+    width 6px
+  .scrollbar-visible::-webkit-scrollbar-thumb
+    background rgba(0,0,0,.15)
+  .scrollbar-visible::-webkit-scrollbar-thumb:hover
+    background rgba(0,0,0,.45)
+.scrollbar-visible::-webkit-scrollbar
+  visibility visible
+.scrollbar-visible::-webkit-scrollbar-thumb
+  visibility visible
+
+// .scrollbar-box.value-scrollbar-box
+//   border 1px solid red
+
+
+
+// .scrollbar-visible::-webkit-scrollbar-thumb:hover
+//     x-transition(all linear 0.3s)
+//     background rgba(0,0,0,.45)
+
+// .scrollbar-inner
+//   .scroll-element
+//     position absolute
+//     x-transition(opacity .3s) 
+//     margin-right 2px
+//   .scroll-y
+//     right 0
+//     width 6px
+//     height 60%
+

@@ -1,0 +1,117 @@
+@import './comm.styl'
+$page_width= 1200px
+.left
+  float left
+.right
+  float right
+//水平居中
+.marAuto
+  margin 0 auto
+//button
+button
+  border none
+  outline none
+  x-border-radius(0)
+//居中
+.tac
+  text-align center
+
+//左边对齐
+.tal
+  text-align left
+
+//右边对齐
+.tar
+  text-align right
+
+//手势光标
+.cp
+  cursor pointer
+.cd
+  cursor default
+
+//加粗
+.b
+  font-weight bold
+
+.inline-block
+  x-inline-block()
+.ve-m
+  vertical-align middle
+.ve-t
+  vertical-align top
+//省略号
+.ellipsis
+  x-ellipsis()
+
+.relative
+  position relative
+
+.absolute
+  position absolute
+
+.hidden
+  display none !important
+  visibility hidden
+
+.invisible
+  visibility hidden
+.visible
+  visibility visible
+
+.noscroll
+  overflow hidden !important
+
+.clearfix
+  x-clearfix()
+
+img.lazy
+  width 100%
+  opacity 0
+  x-transition(all 0.5s ease-in-out)
+//svg---icon
+.icon {
+  width: 1em; height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+.dndPlaceholder
+  display: none
+.camp-data-list
+  .datepicker
+    position absolute
+    z-index 999
+    background $fff
+  div[uib-datepicker-popup-wrap]
+    position absolute
+  .data-inp-wid
+    width 145px
+    cursor pointer
+  .to-span
+    padding 0 10px 0 9px
+  .icon-data
+    position absolute
+    top 0
+    right 9px
+    font-size 14px
+  .to-span
+    padding 0 10px 0 9px
+//上传
+.upload-file
+  // background $fff
+  border 1px dotted $content-border-color1
+  .uploading
+    .iconFont
+      color $un-click
+    .up-span
+      color $hint
+// 禁止选中
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Chrome/Safari/Opera */
+  -khtml-user-select: none; /* Konqueror */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently not supported by any browser */
+}

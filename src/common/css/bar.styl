@@ -1,0 +1,420 @@
+@require "./global"
+@require "./comm"
+//单选、复选
+
+i.checkNoend:after
+  content ""
+  width 7px
+  height 7px
+  position absolute
+  left 3px
+  top 3px
+i.icon-uncheckbox,i.icon-unradio
+  &:before
+    content " "
+i.icon-radio
+  position relative
+  &:before
+    content " "
+    width 9px
+    height 9px
+    display inline-block
+    x-border-radius(50%)
+    position absolute
+    left 2px
+    top 2px
+  &.disabled
+    border 1px solid red
+    &:before
+      background $disable
+i.icon-checkbox:before
+  margin-left -1px
+  font-size 15px
+i.icon-checkbox,i.icon-uncheckbox,i.icon-unradio,i.icon-radio
+  width 13px
+  height 13px
+  line-height 13px
+  overflow hidden
+  display inline-block
+  vertical-align middle
+  background $fff
+  border 1px solid $un-click
+i.icon-radio,i.icon-unradio
+  x-border-radius(50%)
+i.icon-radio,
+i.icon-checkbox,
+i.icon-unradio,
+i.icon-uncheckbox
+  //禁用
+  &.disabled
+    cursor no-drop
+    color $disable
+    // background $disable
+    border-color $un-border
+//开关按钮
+i.btnOnOff
+  width 34px
+  height 20px
+  display inline-block
+  vertical-align middle
+  position relative
+  background $un-click
+  border-radius 20px
+  cursor pointer
+  margin-right 8px
+  &::after
+    width 34px
+    height 20px
+    display block
+    border-radius 20px
+    content ""
+  &::before
+    width 18px
+    height 18px
+    background $fff
+    display block
+    border-radius 18px
+    content ""
+    position absolute
+    left 1px
+    top 1px
+  &:hover
+    background $hover
+  &.hover
+    background $hover
+  //点击打开
+  &.active
+    background $main-color
+    &:before
+      left auto
+      right 1px
+  &.disabled
+    background $disable
+    cursor no-drop
+    &:hover
+      background $disable
+//开关
+.show-label
+  position relative
+  z-index 9
+  padding-right 20px
+  padding-bottom 20px
+  x-inline-block()
+  &.detail-show-lable
+    position absolute
+    top 3px
+    right 50px
+    margin 0
+  label
+    margin-right 10px
+    line-height 30px
+    x-inline-block()
+.open-cirle + span.open-circle-txt
+  padding-left 10px
+  float left 
+.open-cirle + span.open-circle-txt + span.open-circle-txt
+  padding-left 10px
+  float left 
+.open-cirle + span.open-circle-txt
+  padding-left 10px
+  float left 
+.open-cirle
+  float left
+  height 30px
+  line-height 39px
+  position relative
+  .cirle-open
+    position relative
+    width 32px
+    height 18px
+    line-height 18px
+    x-inline-block()
+    x-border-radius(9px)
+    cursor pointer
+    .cirle-open-ball
+      position absolute
+      top 2px
+      right 2px
+      display inline-block
+      height 14px
+      width 14px
+      x-border-radius(50%)
+      background $fff
+    &.cirle-close
+      background $un-click
+      .cirle-open-ball
+        right initial
+        left 2px
+//单选
+.check-radio
+  margin-right 20px
+  x-inline-block()
+  .iconFont
+    x-inline-block()
+    vertical-align middle
+  .checkname
+    padding-left 10px
+    x-inline-block()
+    vertical-align middle
+  &.disabled
+    .iconFont,.checkname
+      cursor no-drop
+      color $disable
+    .iconFont
+      border-color $un-border
+    .iconFont.icon-radio:before
+      background $disable
+      
+//按钮
+.btns
+  margin-left 10px
+  padding 0 10px
+  min-width 80px
+  height 30px
+  box-sizing border-box
+  line-height 30px
+  font-size 14px
+  text-align center
+  color $fff
+  display inline-block
+  cursor pointer
+  background $main-color
+  transition all ease 0.3s
+  &:hover
+    transition all ease 0.3s
+  &.hover
+    background $main-hover
+  //按钮禁用--所有按钮通用
+  &.disabled
+    background $disable !important
+    cursor no-drop
+  //灰色按钮
+  &.gray
+    margin-left 10px
+    background #fff
+    color $body-txt
+    transition all ease 0.3s
+    &:hover
+      color $main-color
+      transition all ease 0.3s
+  //橙色按钮
+  &.orange
+    background $orange-color
+    transition all ease 0.3s
+    &:hover
+      background $orange-hover
+      transition all ease 0.3s
+  &.white
+    margin-left 10px
+    background $fff
+    border 1px solid $dashed-border-color
+    color $body-txt
+    transition all ease 0.3s
+    &:hover
+      background $table-bottom-border
+      transition all ease 0.3s
+//文字按钮
+.btnTxt
+  color $body-txt
+  margin-right 20px
+  font-size 14px
+  cursor pointer
+  display inline-block
+  transition all ease 0.3s
+  &:hover
+    transition all ease 0.3s
+  //禁用
+  &.disabled
+    color $un-click
+    cursor no-drop
+    &:hover
+      color $un-click
+//input盒子
+.inputBox
+  min-height 30px
+  line-height 30px
+  margin 5px 0 0 0
+  //标题
+  label
+    width 80px
+    text-align right
+    display inline-block
+    margin-right 10px
+    //必填-红星
+    span.required
+      color $error
+      font-size 16px
+      display inline-block
+      vertical-align middle
+  //输入框
+  input.input
+    width 200px
+    height 30px
+    //line-height 12px
+    //line-height 30px
+    display inline-block
+    padding 0 10px
+    //border 1px solid $input-border
+    box-sizing border-box
+    //color #000
+    //输入框获取焦点
+    // &:focus
+    //   border-color $main-color
+    //输入框错误状态
+    &.err
+      border-color $error!important
+    //禁止
+    &:disabled
+      background $fff
+      color $un-click
+      border-color $un-border
+      cursor no-drop
+  //input[type="text"]:focus,
+  //input[type="email"]:focus,
+  //input[type="password"]:focus
+  //  line-height normal
+  //  line-height 30px\9
+
+  //输入框盒子-- 禁止状态
+  &.disabled
+    color $un-click
+    //错误信息--盒子
+
+  
+  //搜索框
+  .searchBox
+    position relative
+    display inline-block
+    //搜索输入框
+    input.searchInput
+      width 200px
+      height 30px
+      display inline-block
+      padding 0 10px 0 40px
+      border 1px solid $fff
+      border-bottom-color $un-border
+      border-radius 2px
+      box-sizing border-box
+      margin-bottom 10px
+      color $hint
+      //输入框获取焦点
+      &:focus
+        border-bottom-color $main-color
+        padding-left 10px
+        color $body-txt
+        &+.icon-search
+          display none
+      //输入框错误状态 方块
+      &.err
+        border-bottom-color $error
+      //禁止
+      &:disabled
+        background $fff
+        color $un-click
+        border-bottom-color $disable
+        cursor no-drop
+    .icon-search
+      position absolute
+      left 8px
+      top 3px
+      color $un-click
+.textarea
+  padding 10px
+  width 500px
+  height 230px
+  display inline-block
+  vertical-align top
+  box-sizing border-box
+  border 1px solid $input-border
+.errorBox
+  font-size 12px
+  margin-top 1px
+  line-height normal
+  &.prompt
+    color #fda73b
+  &.error
+    color #f46861
+  &.correct
+    color #6abc6d
+  span
+    display inline-block
+    font-size 12px
+    vertical-align middle
+  .inline-block
+    display inline-block
+    margin-bottom 10px
+  i.iconFont
+    margin 0 8px 0 0
+    display inline-block
+    vertical-align middle
+input[type="password" i]
+  font-family "Microsoft Yahei"
+
+//提示错误信息
+.tipt
+  line-height 30px
+  color $error
+  x-inline-block()
+  span
+    font-size 12px
+    padding-left 5px   
+    
+//复选框
+
+i.icon-checkbox:before
+  text-align center
+  display inline-block
+  box-sizing border-box
+.labels
+  height 20px
+  line-height 20px
+  display inline-block
+  i.iconFont
+    font-size 18px
+    margin-right 8px
+    display inline-block
+    vertical-align middle
+  i.icon-radio,i.icon-checkbox
+    color #1e7fb7
+  i.icon-unradio,i.icon-uncheckbox
+    color #ccc
+  span
+    display inline-block
+    vertical-align middle
+  &.disabled
+    cursor no-drop
+    color #ccc
+    i.iconFont
+      color #e0e0e0
+//单一input框使用
+.single-input
+  padding-left 10px
+  width 200px
+  height 30px
+  line-height 30px
+  font-size 12px
+  box-sizing border-box
+
+input:-moz-placeholder, textarea:-moz-placeholder
+  color #d9d9d9
+input::-moz-placeholder, textarea::-moz-placeholder 
+  color #d9d9d9
+input:-ms-input-placeholder, textarea:-ms-input-placeholder 
+  color #d9d9d9
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder 
+  color #d9d9d9
+input
+  border 1px solid $input-border
+input::-webkit-clear-button,
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button
+  -webkit-appearance none !important
+  margin 0
+//input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus
+//  line-height: normal
+.select-none
+  -moz-user-select:none;
+  -webkit-user-select:none;
+  -ms-user-select:none;
+  -khtml-user-select:none;
+  user-select:none;

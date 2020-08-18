@@ -1,0 +1,106 @@
+easingTimingFunction()
+  -webkit-transition all 0 cubic-bezier(0.250, 0.460, 0.450, 0.940)
+  -moz-transition all 0 cubic-bezier(0.250, 0.460, 0.450, 0.940)
+  -ms-transition all 0 cubic-bezier(0.250, 0.460, 0.450, 0.940)
+  -o-transition all 0 cubic-bezier(0.250, 0.460, 0.450, 0.940)
+  transition all 0 cubic-bezier(0.250, 0.460, 0.450, 0.940) /* easeOutQuad */
+
+  -webkit-transition-timing-function cubic-bezier(0.250, 0.460, 0.450, 0.940)
+  -moz-transition-timing-function cubic-bezier(0.250, 0.460, 0.450, 0.940)
+  -ms-transition-timing-function cubic-bezier(0.250, 0.460, 0.450, 0.940)
+  -o-transition-timing-function cubic-bezier(0.250, 0.460, 0.450, 0.940)
+  transition-timing-function cubic-bezier(0.250, 0.460, 0.450, 0.940) /* easeOutQuad */
+.slide-right
+  easingTimingFunction()
+  &.ng-enter
+    transform(translateX(60px))
+    transitionDuration(250ms)
+    opacity 0
+
+
+  &.ng-enter-active
+    transform(translateX(0))
+    opacity 1
+
+
+  &.ng-leave
+    transform(translateX(0))
+    transitionDuration(250ms)
+    opacity 1
+
+
+  &.ng-leave-active
+    transform(translateX(60px))
+    opacity 0
+
+
+  // Hide
+  &.ng-hide-add
+    transform(translateX(0))
+    transitionDuration(250ms)
+    opacity:1
+
+  &.ng-hide-add.ng-hide-add-active
+    transform(translateX(60px))
+    opacity:0
+
+
+  // Show
+  &.ng-hide-remove
+    transform(translateX(60px))
+    transitionDuration(250ms)
+    display:block!important
+    opacity:0
+
+  &.ng-hide-remove.ng-hide-remove-active
+    transform(translateX(0))
+    opacity:1
+/* ------------------------------------------- */
+/* Slide Left
+/* ------------------------------------------- */
+
+.slide-left
+  easingTimingFunction()
+  &.ng-enter
+    transform(translateX(-60px))
+    transitionDuration(250ms)
+    opacity 0
+
+
+  &.ng-enter-active
+    transform(translateX(0))
+    opacity 1
+
+
+  &.ng-leave
+    transform(translateX(0))
+    transitionDuration(250ms)
+    opacity 1
+
+
+  &.ng-leave-active
+    transform(translateX(-60px))
+    opacity 0
+
+
+  // Hide
+  &.ng-hide-add
+    transform(translateX(0))
+    transitionDuration(250ms)
+    opacity:1
+
+  &.ng-hide-add.ng-hide-add-active
+    transform(translateX(-60px))
+    opacity:0
+
+
+  // Show
+  &.ng-hide-remove
+    transform(translateX(-60px))
+    transitionDuration(250ms)
+    display:block!important
+    opacity:0
+
+  &.ng-hide-remove.ng-hide-remove-active
+    transform(translateX(0))
+    opacity:1

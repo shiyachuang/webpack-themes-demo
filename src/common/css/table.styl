@@ -1,0 +1,273 @@
+
+@require './global.styl'
+@require './comm.styl'
+//table
+.tableBox
+  .ad-table,.ad-table.camp-ad-table,.view-table
+    width 100%
+    border-collapse collapse
+    border-spacing 0
+    .td-span
+      padding-left:20px
+    span.tdId
+      flex:4
+    span.tdCn
+      flex:16
+    span.tdCid
+      flex:9
+    span.tdCname
+      flex:9
+    span.tdBrand
+      flex:8
+    span.tdProduct
+      flex:11
+    span.tdStartD
+      flex:13
+    span.tdEndD
+      flex:12
+    span.tdStatus
+      flex:9
+    span.tdMenu
+      // flex:42
+      flex:57
+      // flex:53
+    span.tdPushRate
+      flex:15
+    span.tdDeliveryRate
+      flex:20
+    span.tdPushOverFrequency
+      flex:27
+    span.tdPushTA
+      flex:14
+    span.tdDMPRate
+      flex:22
+    span.tdDeliveryOverFrequency
+      flex:30
+    span.tdDeliveryTA
+      flex:14
+    tr
+      th,td
+        font-size 12px
+    thead tr,.filterth
+      height 50px
+      line-height 30px
+      border-bottom 1px solid $un-border
+      th
+        vertical-align bottom
+        // font-weight 500
+        padding-left 20px
+        color $title
+      .icon-filtrate,.icon-drop-down,.icon-treeretraction,.icon-hint,.icon-descending_order
+        padding-left 5px
+        font-size 14px
+        vertical-align middle
+        color $hint
+      .icon-drop-down,.icon-treeretraction,.icon-descending_order
+        x-opacity(0)
+      .icon-filtrate
+        x-opacity(1)
+      .drop-down
+        padding-right 5px
+        x-transform(rotate(180deg))
+        x-transition(all linear 0.3s)
+        x-inline-block()
+        vertical-align top
+
+    .filter-content
+      display flex
+    .filterth
+      width 100%
+      display flex
+      .th-date
+        padding-top 20px
+        line-height 30px
+        x-inline-block()
+
+
+
+    .filterth:hover,tr:hover
+      .icon-drop-down,.icon-treeretraction,.icon-descending_order
+        x-opacity(1)
+    tbody tr,.filter-content
+      height 35px
+      line-height 36px
+      border-bottom 1px solid $un-border
+      background-color $fff
+      //x-transition(all ease 0.3s)
+      .rate-col
+        color #e53935
+      .td-level
+        .showSelect
+          .icon-drop-down
+            color $un-click
+      &:hover
+        background #efefef
+        .td-level
+          .showSelect
+            border-color #efefef
+            .icon-drop-down
+              color $hint
+        td,span.td-span
+          .btn-box
+            x-opacity(1)
+      &.disabled
+        background #f1f1f1
+        td
+          color $un-click
+      td
+        padding-left 20px
+        color $body-txt
+      td,span.td-span
+        .btn-box
+          x-opacity(0)
+          x-transition(all ease 0.3s)
+          .btnTxt
+            font-size 12px
+            margin-right 10px
+            &.disabled
+              color $un-click
+              &:hover
+                color $un-click
+      td.ellipsis-box
+        max-width 330px
+        span.ellipsis
+          width 100%
+          x-inline-block()
+          height 20px
+          line-height 20px
+          vertical-align middle
+    tbody
+      tr.warning
+        background rgba(246,72,36,.1)
+        td:nth-child(4)
+          color red
+
+  table.ad-table.data-table
+    background $fff
+    thead
+      display table
+      width 100%
+      table-layout fixed
+      width calc( 100% - 1em )
+      th
+        white-space nowrap
+    tbody
+      display block
+      max-height 370px
+      overflow-y auto
+      tr
+        display table
+        width 100%
+        table-layout fixed
+
+//按钮组盒子
+.opt-btn-box
+  x-opacity(0)
+  x-transition(all ease 0.3s)
+  .btnTxt
+    font-size 12px
+    margin-right 10px
+
+
+
+//按钮组 竖线
+.lines
+  margin 0 10px 0 0
+  color #e0e0e0
+  line-height 32px
+  display inline-block
+  vertical-align top
+//table
+.ad-table
+  tr:hover
+    .btn-box
+      x-opacity(1)
+.c-status
+  x-inline-block()
+  // font-size 12px
+  color $main-color
+  &.inited
+    color #4196cb
+  &.suspended
+    color #fd4e30
+  &.waiting-online
+    color #eb211a
+  &.in-progress
+    color #7cba6b
+  &.finished
+    color #bcbcbc
+  &.waiting
+    color #f07b2c
+  &.failed
+    color $error
+
+//列表-表格-展示------报表订阅-编辑
+.table-list
+  width calc(100vw - 470px)
+  overflow hidden
+  overflow-x auto
+  box-sizing border-box
+  margin 0 10px
+  margin-bottom 60px
+  .ad-table
+    width 99%
+    border-collapse collapse
+    border-spacing 1
+    border-bottom 1px solid $content-border-color1
+    tr
+      height 30px
+      cursor pointer
+      &:hover
+        background $content-body-bg
+        .head-bg
+          background $content-head-bg
+          cursor initial
+    .head-bg
+      background $content-head-bg
+    .text-center
+      text-align center !important
+    .border-has
+      // border-right 1px solid #e4e4e4 !important
+    .rowspan-none
+      display none
+    .head-bg:hover
+      background $content-head-bg
+      cursor initial
+      .value-none
+        background $fff
+    td
+      div
+        height 30px
+        padding 0 20px
+        line-height 32px
+        white-space nowrap
+        border 1px solid $content-border-color1
+        border-bottom-width 0
+        margin-right -1px
+    .value-none
+      background $fff
+      border-color $fff
+      color $fff
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
