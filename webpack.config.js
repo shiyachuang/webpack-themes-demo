@@ -9,33 +9,34 @@ const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 
-// 主题路径
+// // 主题路径
 const THEME_PATH = './src/common';
-// 获取所有的主题
+// // 获取所有的主题
 const resolveToThemeStaticPath = fileName => path.resolve(THEME_PATH, fileName);
-// 过滤出来less 的文件
+// // 过滤出来less 的文件
 const themeFileNameSet = fs.readdirSync(path.resolve(THEME_PATH)).filter(fileName => /\.styl/.test(fileName));
-// 获取主题样式
-const getThemeName = fileName => `${path.basename(fileName, path.extname(fileName))}`;
+// // 获取主题样式
+// const getThemeName = fileName => `${path.basename(fileName, path.extname(fileName))}`;
 
 
-// 全部主题plugins的集合
-const themesExtractLessSet = themeFileNameSet.map(fileName => new ExtractTextWebpackPlugin(`${getThemeName(fileName)}.css`))
-// 全部主题的规则集合
-const themeLoaderSet = themeFileNameSet.map((fileName, index) => {
-    return {
-        test: /\.(styl|css)$/,
-        include: resolveToThemeStaticPath(fileName),
-        loader: themesExtractLessSet[index].extract({
-            use: [{ loader: 'css-loader' }, { loader: 'stylus-loader' }]
-        })
-    }
-});
+// // 全部主题plugins的集合
+// const themesExtractLessSet = themeFileNameSet.map(fileName => new ExtractTextWebpackPlugin(`${getThemeName(fileName)}.css`))
+// // 全部主题的规则集合
+// const themeLoaderSet = themeFileNameSet.map((fileName, index) => {
+//     return {
+//         test: /\.(styl|css)$/,
+//         include: resolveToThemeStaticPath(fileName),
+//         loader: themesExtractLessSet[index].extract({
+//             use: [{ loader: 'css-loader' }, { loader: 'stylus-loader' }]
+//         })
+//     }
+// });
 
-// 排除主css打包时包含其他主题的样式
+// // 排除主css打包时包含其他主题的样式
 const themePaths = themeFileNameSet.map(resolveToThemeStaticPath);
-// 其他样式整理到一个style文件
-const extractLess = new ExtractTextWebpackPlugin('css/style.[chunkhash].css')
+// // 其他样式整理到一个style文件
+// const extractLess = new ExtractTextWebpackPlugin('css/style.[chunkhash].css')
+const extractLess = new ExtractTextWebpackPlugin('css/[name].[chunkhash].css')
 
 let plugins = [];
 if (pro) {
@@ -44,13 +45,13 @@ if (pro) {
         new CleanWebpackPlugin(),
         extractLess,
         // 主图集合
-        ...themesExtractLessSet,
+        // ...themesExtractLessSet,
         new HtmlWebpackPlugin({
             template: './src/index.html',
             hash: true, // 会在打包好的bundle.js后面加上hash串
             chunks: ['vendor', 'index',],  //  引入需要的chunk
             inject: true,
-            excludeChunks: ['themes']
+            // excludeChunks: ['themes']
         }),
     )
 } else {
@@ -59,12 +60,12 @@ if (pro) {
         extractLess,
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),  // 热更新，热更新不是刷新
-        ...themesExtractLessSet,
+        // ...themesExtractLessSet,
         new HtmlWebpackPlugin({
             template: './src/index.html',
             chunks: ['vendor', 'index',],  //  引入需要的chunk
             inject: true,
-            excludeChunks: ['themes']
+            // excludeChunks: ['themes']
         }),
 
     )
@@ -72,7 +73,18 @@ if (pro) {
 module.exports = {
     entry: {
         index: './src/index.js',
-        themes: './src/themes.js',
+        redTheme: ["./themes/redTheme.js"],
+        skyTheme: ["./themes/skyTheme.js"],
+        cyanTheme: ["./themes/cyanTheme.js"],
+        blueTheme: ["./themes/blueTheme.js"],
+        greenTheme: ["./themes/greenTheme.js"],
+        orangeTheme: ["./themes/orangeTheme.js"],
+        purpleTheme: ["./themes/purpleTheme.js"],
+        yellowTheme: ["./themes/yellowTheme.js"],
+        defaultTheme: ["./themes/defaultTheme.js"],
+        wineRedTheme: ["./themes/wineRedTheme.js"],
+        blueGreyTheme: ["./themes/blueGreyTheme.js"],
+        lightGreenTheme: ["./themes/lightGreenTheme.js"],
     },
     output: {
         // 添加hash可以防止文件缓存，每次都会生成4位的hash串
@@ -111,7 +123,6 @@ module.exports = {
             },
             {
                 test: /\.styl$/,     // 解析scss
-                exclude: themePaths,
                 use: extractLess.extract({
                     // 将css用link的方式引入就不再需要style-loader了
                     fallback: "style-loader",
@@ -138,7 +149,7 @@ module.exports = {
                 test: /\.(eot|ttf|woff|svg)$/,
                 use: 'file-loader'
             },
-            ...themeLoaderSet
+            // ...themeLoaderSet
         ]
     },
     plugins: plugins,

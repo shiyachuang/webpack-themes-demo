@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env webpack-dev-server --mode development --progress",
-    "build": "cross-env npm run clean && webpack --mode production --progress && rm -rf build/themes.bundle.js",
+    "build": "cross-env npm run clean && webpack --mode production --progress && node themes/cssExtract.js",
     "clean": "cross-env rm -rf build && mkdir build"
   },
   "author": "",
@@ -23,6 +23,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
     "babel-register": "^6.26.0",
+    "cheerio": "^1.0.0-rc.3",
     "clean-webpack-plugin": "^3.0.0",
     "cross-env": "^7.0.2",
     "css-loader": "^3.6.0",
