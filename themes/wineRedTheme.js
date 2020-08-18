@@ -1,3 +1,3 @@
-import "../src/common/wineRedTheme.styl";
+import "./css/wineRedTheme.styl";
 
 

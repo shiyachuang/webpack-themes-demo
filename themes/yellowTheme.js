@@ -1,3 +1,3 @@
-import "../src/common/yellowTheme.styl";
+import "./css/yellowTheme.styl";
 
 

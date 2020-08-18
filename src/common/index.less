@@ -1,0 +1,55 @@
+.displayFlex() {
+    display: -webkit-box !important; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box !important; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox !important; /* 混合版本语法: IE 10 */
+    display: -webkit-flex !important; /* 新版本语法: Chrome 21+ */
+    display: flex !important; /* 新版本语法: Opera 12.1, Firefox 22+ */
+  }
+  
+  .flex(@num:1) {
+    -webkit-box-flex: @num; /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: @num; /* OLD - Firefox 19- */
+    -webkit-flex: @num; /* Chrome */
+    -ms-flex: @num; /* IE 10 */
+    flex: @num; /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  }
+  
+  .alignItems(@type:center) {
+    -webkit-box-align-items: @type;
+    -moz-box-align-items: @type;
+    -webkit-align-items: @type;
+    -ms-align-items: @type;
+    align-items: @type;
+  }
+  
+  .flexDirection(@type:column) {
+    -webkit-box-flex-direction: @type;
+    -moz-box-flex-direction: @type;
+    -webkit-flex-direction: @type;
+    -ms-flex-direction: @type;
+    flex-direction: @type;
+  }
+  
+  .justifyContent(@type:space-around) {
+    -webkit-box-justify-content: @type;
+    -moz-box-justify-content: @type;
+    -webkit-justify-content: @type;
+    -ms-justify-content: @type;
+    justify-content: @type;
+  }
+  
+  .transition(@type:all linear 0.3s) {
+    -webkit-transition: @type;
+    -moz-transition: @type;
+    -o-transition: @type;
+    transition: @type;
+  }
+  
+  .noselect(@type: none) {
+    -webkit-touch-callout: @type; /* iOS Safari */
+    -webkit-user-select: @type; /* Chrome/Safari/Opera */
+    -khtml-user-select: @type; /* Konqueror */
+    -moz-user-select: @type; /* Firefox */
+    -ms-user-select: @type; /* Internet Explorer/Edge */
+    user-select: @type; /* Non-prefixed version, currently not supported by any browser */
+  }

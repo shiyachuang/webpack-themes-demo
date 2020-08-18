@@ -2,10 +2,81 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <base href="/"/>
+    <title>Campaign BI | 活动分析</title>
+    <base href="/" />
+    <script src="//at.alicdn.com/t/font_229641_vx7btfpk43d.js"></script>
+    <script>
+        function extractToken() {
+            var queryArr = (location.hash && location.hash.split('?')) || location.search.split('?');
+            if (queryArr.length > 1 && queryArr[1].indexOf('token') !== -1) {
+                return queryArr[1].match(/token=(.*)(&|$)/)[1]
+            } else {
+                var arr, reg = new RegExp('(^| )' + 'token' + '=([^;]*)(;|$)');
+                if (arr = document.cookie.match(reg)) {
+                    return unescape(atob(arr[2]));
+                } else {
+                    return localStorage.getItem('token');
+                }
+            }
+        }
+        function jsonp(config) {
+            var url = config.url;
+            var success = config.success;
+            createScript();
+            function createScript() {
+                var script = document.createElement('script');
+                var callName = 'callback_' + new Date().getTime();
+                window[callName] = function (result) {
+                    window[callName] = null;
+                    success(result);
+                    document.head.removeChild(script);
+                };
+                script.src = url + '&callback=' + callName;
+                document.head.appendChild(script);
+            }
+        }
+        function addEvent(element, type, callback) {
+
+            if (element.addEventListener) {
+                element.addEventListener(type, callback, false);
+            } else if (element.attachEvent) {
+                element.attachEvent('on' + type, callback)
+            }
+        };
+
+        if (window.top != window.self) {
+            addEvent(window, 'message', function (e) {
+
+                if (e.data && typeof e.data == 'string') {
+                    if (e.data.indexOf('^*&%portal^*&%') != -1) {
+                        let data = JSON.parse(e.data);
+                        data.call = true;
+                        window.portal = { e, data: JSON.stringify(data) };
+                    } else if (e.data.indexOf('^*&%infoflow^*&%') != -1) {
+                        let data = JSON.parse(e.data);
+                        window.infoflow = { e, data: JSON.stringify(data) };
+                    }
+                }
+            });
+        };
+        const token = extractToken();
+        if (location.href.indexOf("sso_token") == -1 && token) {
+            jsonp({
+                url: 'api/EgScript/CrossOver/getTheme?token=' + token,
+                success: function (result) {
+                    var cssNode = document.createElement('link');
+                    localStorage.setItem("theme", result.theme_name);
+                    cssNode.href = window.cssUrls && window.cssUrls[result.theme_name];
+                    cssNode.rel = "stylesheet";
+                    document.head.appendChild(cssNode);
+                }
+            })
+        }
+    </script>
 </head>
+
 <body>
     <div id="root"></div>
 </body>
+
 </html>

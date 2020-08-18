@@ -1,14 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import APP from "./App"
-import "./common/defaultTheme.styl"
+import APP from "./App2"
 
 const App = () => {
   return (
     <div>
       <APP/>
-      <p>我多帅</p>
-      <a className="btns">主题配色生效</a>
     </div>
   );
 };

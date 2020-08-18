@@ -1,4 +1,4 @@
-import "../src/common/defaultTheme.styl";
+import "./css/defaultTheme.styl";
 
 
 

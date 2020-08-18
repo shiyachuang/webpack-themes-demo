@@ -8,35 +8,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-
-// // 主题路径
+// 主题路径
 const THEME_PATH = './src/common';
-// // 获取所有的主题
+// 获取所有的主题
 const resolveToThemeStaticPath = fileName => path.resolve(THEME_PATH, fileName);
-// // 过滤出来less 的文件
+// 过滤出来less 的文件
 const themeFileNameSet = fs.readdirSync(path.resolve(THEME_PATH)).filter(fileName => /\.styl/.test(fileName));
-// // 获取主题样式
-// const getThemeName = fileName => `${path.basename(fileName, path.extname(fileName))}`;
 
-
-// // 全部主题plugins的集合
-// const themesExtractLessSet = themeFileNameSet.map(fileName => new ExtractTextWebpackPlugin(`${getThemeName(fileName)}.css`))
-// // 全部主题的规则集合
-// const themeLoaderSet = themeFileNameSet.map((fileName, index) => {
-//     return {
-//         test: /\.(styl|css)$/,
-//         include: resolveToThemeStaticPath(fileName),
-//         loader: themesExtractLessSet[index].extract({
-//             use: [{ loader: 'css-loader' }, { loader: 'stylus-loader' }]
-//         })
-//     }
-// });
-
-// // 排除主css打包时包含其他主题的样式
+// 排除主css打包时包含其他主题的样式
 const themePaths = themeFileNameSet.map(resolveToThemeStaticPath);
-// // 其他样式整理到一个style文件
-// const extractLess = new ExtractTextWebpackPlugin('css/style.[chunkhash].css')
-const extractLess = new ExtractTextWebpackPlugin('css/[name].[chunkhash].css')
+const extractLess = new ExtractTextWebpackPlugin({filename: 'css/[name].[chunkhash].css'})
 
 let plugins = [];
 if (pro) {
@@ -44,8 +25,17 @@ if (pro) {
     plugins.push(
         new CleanWebpackPlugin(),
         extractLess,
-        // 主图集合
-        // ...themesExtractLessSet,
+        new webpack.ProvidePlugin({
+            moment: "moment",
+            "window.moment": "moment"
+        }),
+        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en|zh-cn/),
+        /**
+         * 不去加载不用的locale
+         * https://github.com/moment/moment/issues/2517
+         * 减少200kb
+         */
+        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en|zh-cn/),
         new HtmlWebpackPlugin({
             template: './src/index.html',
             hash: true, // 会在打包好的bundle.js后面加上hash串
@@ -60,7 +50,10 @@ if (pro) {
         extractLess,
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),  // 热更新，热更新不是刷新
-        // ...themesExtractLessSet,
+        new webpack.ProvidePlugin({
+            moment: "moment",
+            "window.moment": "moment"
+        }),
         new HtmlWebpackPlugin({
             template: './src/index.html',
             chunks: ['vendor', 'index',],  //  引入需要的chunk
