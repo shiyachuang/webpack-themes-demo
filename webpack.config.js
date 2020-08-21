@@ -7,7 +7,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // 拆分css样式的插件
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-
+// 分析
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// 优化loadsh 优化500k
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
+// 多线程打包优化
+const HappyPack = require('happypack');
+const os = require('os');
+const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 // 主题路径
 const THEME_PATH = './src/common';
 // 获取所有的主题
@@ -17,7 +24,9 @@ const themeFileNameSet = fs.readdirSync(path.resolve(THEME_PATH)).filter(fileNam
 
 // 排除主css打包时包含其他主题的样式
 const themePaths = themeFileNameSet.map(resolveToThemeStaticPath);
-const extractLess = new ExtractTextWebpackPlugin({filename: 'css/[name].[chunkhash].css'})
+const extractLess = new ExtractTextWebpackPlugin({ filename: 'css/[name].[chunkhash].css' })
+
+
 
 let plugins = [];
 if (pro) {
@@ -29,12 +38,12 @@ if (pro) {
             moment: "moment",
             "window.moment": "moment"
         }),
-        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en|zh-cn/),
         /**
          * 不去加载不用的locale
          * https://github.com/moment/moment/issues/2517
          * 减少200kb
          */
+        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en|zh-cn/),
         new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en|zh-cn/),
         new HtmlWebpackPlugin({
             template: './src/index.html',
@@ -43,6 +52,8 @@ if (pro) {
             inject: true,
             // excludeChunks: ['themes']
         }),
+        new BundleAnalyzerPlugin(),
+        new LodashModuleReplacementPlugin,
     )
 } else {
     //  开发环境
@@ -52,7 +63,7 @@ if (pro) {
         new webpack.HotModuleReplacementPlugin(),  // 热更新，热更新不是刷新
         new webpack.ProvidePlugin({
             moment: "moment",
-            "window.moment": "moment"
+            "window.moment": "moment",
         }),
         new HtmlWebpackPlugin({
             template: './src/index.html',
@@ -60,9 +71,25 @@ if (pro) {
             inject: true,
             // excludeChunks: ['themes']
         }),
-
+        new HappyPack({
+            // 基础参数设置
+            id: 'happybabel', // 上面loader?后面指定的id
+            loaders: [{
+                loader: 'babel-loader',
+                // here you configure babel:
+                options: { babelrc: true, cacheDirectory: true }
+            }],
+            threadPool: happyThreadPool,
+        }),
+        new LodashModuleReplacementPlugin,
     )
 }
+// 如果是build 增加loadsh 优化,
+const loadshOption = pro ? {
+    options: {
+        'plugins': ['lodash'],
+    }
+} : {}
 module.exports = {
     entry: {
         index: './src/index.js',
@@ -91,9 +118,13 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
-                use: 'babel-loader',
                 include: /src/,          // 只转化src目录下的js
-                exclude: /node_modules/  // 排除掉node_modules，优化打包速度
+                exclude: /node_modules/,  // 排除掉node_modules，优化打包速度
+                use: {
+                    //把对.js 的文件处理交给id为happyBabel 的HappyPack 的实例执行
+                    loader: "happypack/loader?id=happybabel",
+                    ...loadshOption
+                }
             },
             {
                 test: /\.(less|css)$/,     // 解析less
@@ -176,11 +207,40 @@ module.exports = {
     },
     devServer: {
         contentBase: path.join(__dirname, 'build'),
-        port: 3000,             // 端口
+        port: 4000,             // 端口
         open: true,             // 自动打开浏览器
         hot: true,               // 开启热更新
         overlay: true, // 浏览器页面上显示错误
-        historyApiFallback: true
+        historyApiFallback: true,
+        proxy: {
+            "/rap/*": {
+                target: "http://192.168.0.30/mockjsdata/33/",
+                pathRewrite: {
+                    "^/rap": ""
+                },
+                changeOrigin: true,
+                secure: false
+            },
+            "/apicm/*": {
+                target: 'https://cmtest.addnewer.com/',
+                // target: "https://cmdev.addnewer.com/", 
+                // target: "https://cbsandbox.addnewer.com/",
+                // target: 'https://cb.addnewer.com',
+                pathRewrite: {
+                    "^/apicm": "/apicm"
+                },
+                changeOrigin: true,
+                secure: false
+            },
+            "/api/*": {
+                target: 'https://cmtest.addnewer.com/',
+                // target: "https://cmdev.addnewer.com/", 
+                // target: "https://cbsandbox.addnewer.com/",
+                // target: 'https://cb.addnewer.com',
+                changeOrigin: true,
+                secure: false
+            }
+        }
     },
     devtool: pro ? '' : 'inline-source-map'
 }
